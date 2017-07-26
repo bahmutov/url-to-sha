@@ -8,11 +8,12 @@ module.exports = (pluginConfig, config, cb) => {
   debug('plugin config %j', pluginConfig)
 
   const property = pluginConfig.property || 'id'
-  got(pluginConfig.url, {json: true})
+  got(pluginConfig.url, { json: true })
     .then(r => r.body)
     .then(build => build[property])
     .then(sha => {
       debug('build property "%s" has SHA %s', property, sha)
-      cb(null, {gitHead: sha})
+      cb(null, { gitHead: sha })
     })
+    .catch(cb)
 }

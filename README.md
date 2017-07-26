@@ -18,6 +18,10 @@ npm install --save url-to-sha
 
 ## Use
 
+## Debugging
+
+Run with environment variable `DEBUG=url-to-sha ...`
+
 ### Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2017
