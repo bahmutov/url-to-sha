@@ -2,3 +2,8 @@ exports['returns SHA 1'] = {
   "gitHead": "foo"
 }
 
+exports['returns SHA 2'] = {
+  "gitHead": "foo",
+  "lastRelease": "1.0.1"
+}
+

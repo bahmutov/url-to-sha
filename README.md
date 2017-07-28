@@ -18,6 +18,46 @@ npm install --save url-to-sha
 
 ## Use
 
+Use as a plugin to [semantic-release][semantic-release] and
+[semantic-action][semantic-action]. Set in `package.json`
+
+```json
+{
+  "release": {
+    "getLastRelease": {
+      "path": "url-to-sha",
+      "url": "https://glebbahmutov.com/test-semantic-deploy/build.json"
+    }
+  }
+}
+```
+
+When the url is fetched, there is probably an object, for example
+
+```
+$ curl https://glebbahmutov.com/test-semantic-deploy/build.json
+{
+  "id": "2233f222ff1ae15ca16d58121151a0fa17b561d7",
+  "short": "2233f22",
+  "savedAt": "2017-07-27T16:31:20.284Z",
+  "version": "1.0.0"
+}
+```
+
+This plugin will call back with object like
+
+```json
+{
+  "gitHead": "2233f222ff1ae15ca16d58121151a0fa17b561d7"
+  "lastRelease": "1.0.0"
+}
+```
+
+Which will allow semantic action to proceed from that point.
+
+[semantic-release]: https://github.com/semantic-release/semantic-release
+[semantic-action]: https://github.com/bahmutov/semantic-action
+
 ## Debugging
 
 Run with environment variable `DEBUG=url-to-sha ...`

@@ -20,13 +20,25 @@ module.exports = (pluginConfig, config, cb) => {
   debug('plugin config %j', pluginConfig)
 
   const property = pluginConfig.property || 'id'
+  const extract = json => {
+    const gitHead = json[property]
+    debug('build property "%s" has SHA %s', property, gitHead)
+    const result = {
+      gitHead: gitHead
+    }
+    const lastRelease = json.version || json.lastRelease
+    if (lastRelease) {
+      result.lastRelease = lastRelease
+    }
+    return result
+  }
+
   got(pluginConfig.url, { json: true })
     .then(r => r.body)
     .then(tap(printObject))
-    .then(build => build[property])
-    .then(sha => {
-      debug('build property "%s" has SHA %s', property, sha)
-      cb(null, { gitHead: sha })
+    .then(extract)
+    .then(result => {
+      cb(null, result)
     })
     .catch(cb)
 }
