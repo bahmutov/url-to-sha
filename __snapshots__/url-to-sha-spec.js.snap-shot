@@ -1,0 +1,4 @@
+exports['returns SHA 1'] = {
+  "gitHead": "foo"
+}
+
