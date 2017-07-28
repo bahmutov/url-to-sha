@@ -43,7 +43,7 @@ describe('url-to-sha', () => {
       }
       const cb = (err, result) => {
         la(err === null, 'got an error', err)
-        la(result.lastRelease === json.version, 'wrong version', result)
+        la(result.version === json.version, 'wrong version', result)
         snapshot(result)
         done()
       }

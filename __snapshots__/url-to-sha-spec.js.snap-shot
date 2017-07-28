@@ -4,6 +4,6 @@ exports['returns SHA 1'] = {
 
 exports['returns SHA 2'] = {
   "gitHead": "foo",
-  "lastRelease": "1.0.1"
+  "version": "1.0.1"
 }
 

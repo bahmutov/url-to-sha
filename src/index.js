@@ -26,9 +26,10 @@ module.exports = (pluginConfig, config, cb) => {
     const result = {
       gitHead: gitHead
     }
-    const lastRelease = json.version || json.lastRelease
-    if (lastRelease) {
-      result.lastRelease = lastRelease
+    const version = json.version || json.lastRelease
+    if (version) {
+      result.version = version
+      debug('set version to', version)
     }
     return result
   }

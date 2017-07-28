@@ -50,7 +50,7 @@ This plugin will call back with object like
 ```json
 {
   "gitHead": "2233f222ff1ae15ca16d58121151a0fa17b561d7",
-  "lastRelease": "1.0.0"
+  "version": "1.0.0"
 }
 ```
 
