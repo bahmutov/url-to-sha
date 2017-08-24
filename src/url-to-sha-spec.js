@@ -4,9 +4,27 @@
 const urlToSha = require('.')
 const nock = require('nock')
 const la = require('lazy-ass')
-const snapshot = require('snap-shot')
+const snapshot = require('snap-shot-it')
 
 describe('url-to-sha', () => {
+  describe('handles missing file', () => {
+    beforeEach(() => {
+      nock('https://fake-domain.com').get('/build.json').reply(404)
+    })
+
+    it('returns initial type', done => {
+      const pluginConfig = {
+        url: 'https://fake-domain.com/build.json'
+      }
+      const cb = (err, results) => {
+        la(results, 'there should be results, error', err)
+        snapshot(results)
+        done()
+      }
+      urlToSha(pluginConfig, null, cb)
+    })
+  })
+
   describe('just id property', () => {
     const json = {
       id: 'foo'

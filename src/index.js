@@ -15,7 +15,11 @@ function printObject (object) {
   debug(object)
 }
 
-module.exports = (pluginConfig, config, cb) => {
+const defaultResult = {
+  type: 'initial'
+}
+
+function urlToSha (pluginConfig, config, cb) {
   la(is.url(pluginConfig.url), 'missing url in the plugin config', pluginConfig)
   debug('plugin config %j', pluginConfig)
 
@@ -39,7 +43,14 @@ module.exports = (pluginConfig, config, cb) => {
     .then(tap(printObject))
     .then(extract)
     .then(result => {
+      debug('success from url', pluginConfig.url)
       cb(null, result)
     })
-    .catch(cb)
+    .catch(err => {
+      debug('got an error from', pluginConfig.url)
+      debug(err)
+      cb(null, defaultResult)
+    })
 }
+
+module.exports = urlToSha
