@@ -9,7 +9,9 @@ const snapshot = require('snap-shot-it')
 describe('url-to-sha', () => {
   describe('handles missing file', () => {
     beforeEach(() => {
-      nock('https://fake-domain.com').get('/build.json').reply(404)
+      nock('https://fake-domain.com')
+        .get('/build.json')
+        .reply(404)
     })
 
     it('returns initial type', done => {
@@ -30,7 +32,9 @@ describe('url-to-sha', () => {
       id: 'foo'
     }
     beforeEach(() => {
-      nock('https://fake-domain.com').get('/build.json').reply(200, json)
+      nock('https://fake-domain.com')
+        .get('/build.json')
+        .reply(200, json)
     })
 
     it('returns SHA', done => {
@@ -52,7 +56,9 @@ describe('url-to-sha', () => {
       version: '1.0.1'
     }
     beforeEach(() => {
-      nock('https://fake-domain.com').get('/build.json').reply(200, json)
+      nock('https://fake-domain.com')
+        .get('/build.json')
+        .reply(200, json)
     })
 
     it('returns SHA', done => {
